@@ -1,36 +1,29 @@
-const songs = [
-    "audio/music/song1.mp3",
-    "audio/music/song2.mp3",
-    "audio/music/song3.mp3"
-];
+const debug = document.getElementById("debug");
 
-let currentSong = 0;
-
-const player = document.getElementById("player");
-const nowPlaying = document.getElementById("nowPlaying");
+debug.textContent = "A"; // Script started
 
 function playSong(index) {
-    console.log("Playing:", songs[index]);
+    debug.textContent = "B"; // Trying to play
 
     player.src = songs[index];
+    player.play();
 
-    player.play().catch(err => {
-        console.error("Play failed:", err);
-    });
-
-    nowPlaying.textContent = "Now Playing: " + songs[index];
+    nowPlaying.textContent = songs[index];
 }
 
 player.addEventListener("ended", () => {
-    console.log("Song ended!");
+    debug.textContent = "C"; // Song ended
 
     currentSong++;
 
     if (currentSong >= songs.length) {
+        debug.textContent = "D"; // Looping back
         currentSong = 0;
     }
 
     playSong(currentSong);
 });
 
-playSong(currentSong);
+player.addEventListener("error", () => {
+    debug.textContent = "E"; // Audio error
+});

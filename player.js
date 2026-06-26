@@ -10,15 +10,19 @@ const player = document.getElementById("player");
 const nowPlaying = document.getElementById("nowPlaying");
 
 function playSong(index) {
-    player.src = songs[index];
-    player.play();
+    console.log("Playing:", songs[index]);
 
-    nowPlaying.textContent =
-        "Now Playing: " + songs[index].split("/").pop();
+    player.src = songs[index];
+
+    player.play().catch(err => {
+        console.error("Play failed:", err);
+    });
+
+    nowPlaying.textContent = "Now Playing: " + songs[index];
 }
 
-// When a song finishes...
 player.addEventListener("ended", () => {
+    console.log("Song ended!");
 
     currentSong++;
 
@@ -27,7 +31,6 @@ player.addEventListener("ended", () => {
     }
 
     playSong(currentSong);
-
 });
 
 playSong(currentSong);

@@ -21,10 +21,10 @@ function playSong(index) {
         debug.textContent = "D";
         status.textContent = "Playing";
         nowPlaying.textContent = "Now Playing: " + songs[index];
-    }).catch(() => {
-        debug.textContent = "X";
-        status.textContent = "Playback blocked";
-    });
+.catch((error) => {
+    debug.textContent = "X";
+    status.textContent = error.name + ": " + error.message;
+});
 }
 
 player.addEventListener("ended", () => {

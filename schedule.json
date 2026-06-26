@@ -4,7 +4,7 @@
         {
             "start": "00:00",
             "end": "23:59",
-            "playlist": "default"
+            "playlist": "playlists/default.json"
         }
     ]
 }

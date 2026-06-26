@@ -10,15 +10,12 @@ const player = document.getElementById("player");
 const nowPlaying = document.getElementById("nowPlaying");
 const status = document.getElementById("status");
 const debug = document.getElementById("debug");
-
-debug.textContent = "A";
+const startButton = document.getElementById("startButton");
 
 function playSong(index) {
     debug.textContent = "B";
 
     player.src = songs[index];
-
-    debug.textContent = "C";
 
     player.play().then(() => {
         debug.textContent = "D";
@@ -26,13 +23,11 @@ function playSong(index) {
         nowPlaying.textContent = "Now Playing: " + songs[index];
     }).catch(() => {
         debug.textContent = "X";
-        status.textContent = "Click anywhere to start playback.";
+        status.textContent = "Playback blocked";
     });
 }
 
 player.addEventListener("ended", () => {
-    debug.textContent = "E";
-
     currentSong++;
 
     if (currentSong >= songs.length) {
@@ -43,10 +38,7 @@ player.addEventListener("ended", () => {
     playSong(currentSong);
 });
 
-player.addEventListener("error", () => {
-    debug.textContent = "G";
-    status.textContent = "Audio Error";
+startButton.addEventListener("click", () => {
+    startButton.style.display = "none";
+    playSong(currentSong);
 });
-
-// Start the first song
-playSong(currentSong);

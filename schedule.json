@@ -1,1 +1,10 @@
-
+{
+    "timezone": "America/New_York",
+    "schedule": [
+        {
+            "start": "00:00",
+            "end": "23:59",
+            "playlist": "default"
+        }
+    ]
+}

@@ -2,6 +2,7 @@
     "loop": true,
     "tracks": [
         "audio/music/song1.mp3",
-        "audio/music/song2.mp3"
+        "audio/music/song2.mp3",
+        "audio/music/song3.mp3"
     ]
 }

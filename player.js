@@ -18,27 +18,33 @@ function playSong(index) {
 
     player.src = songs[index];
 
-    player.play();
+    debug.textContent = "C";
 
-    nowPlaying.textContent = "Now Playing: " + songs[index];
-    status.textContent = "Playing";
+    player.play().then(() => {
+        debug.textContent = "D";
+        status.textContent = "Playing";
+        nowPlaying.textContent = "Now Playing: " + songs[index];
+    }).catch(() => {
+        debug.textContent = "X";
+        status.textContent = "Click anywhere to start playback.";
+    });
 }
 
 player.addEventListener("ended", () => {
-    debug.textContent = "C";
+    debug.textContent = "E";
 
     currentSong++;
 
     if (currentSong >= songs.length) {
-        debug.textContent = "D";
         currentSong = 0;
+        debug.textContent = "F";
     }
 
     playSong(currentSong);
 });
 
 player.addEventListener("error", () => {
-    debug.textContent = "E";
+    debug.textContent = "G";
     status.textContent = "Audio Error";
 });
 
